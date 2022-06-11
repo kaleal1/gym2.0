@@ -23,7 +23,10 @@ def excersice(request):
     excersice = Excercise.objects.all()
     return render(request, 'excersice/index.html', {'excersice': excersice})
 def crearexcersice(request):
-    excersiceformulario = ExcerciseForm(request.POST or None)
+    excersiceformulario = ExcerciseForm(request.POST or None, request.FILES or None)
+    if excersiceformulario.is_valid():
+        excersiceformulario.save()
+        return HttpResponse('Guardado')
     return render(request, 'excersice/crear.html', {'excersiceformulario': excersiceformulario})
 def editarexcersice(request):
     return render(request, 'excersice/editar.html')
