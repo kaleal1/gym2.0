@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block titulo %} Lista de Ejercicios {% endblock %}
+
+{% block contenido %}
+
+<div class="card">
+    <div class="card-header">
+        <a name="" id="" class="btn btn-success" href="{% url 'crearexcersice' %}" role="button">Agregar nuevo ejercicio</a>
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Ejercicio</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Imagen</th>
+                    <th>Descripcion</th>
+                    <th>Musculo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for excersice in excersice %}
+                <tr>
+                    <td>{{excersice.ExcerciseId}}</td>
+                    <td>{{excersice.ExcerciseName}}</td>
+                    <td>
+                        <img src="{{excersice.ExcerciseImage.url}}", height="100"/>
+
+                    </td>
+                    <td>{{excersice.ExcerciseDescription}}</td>
+                    <td>{{excersice.ExcerciseMuscle}}</td>
+                    <td>
+                        <a name="" id="" class="btn btn-info" href="{% url 'editarexcersice'%}" role="button">Editar</a>
+                        <a name="" id="" class="btn btn-danger" href="#" role="button">Borrar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+
+    </div>
+    <div class="card-footer text-muted">
+        ©Team Laika
+    </div>
+</div>
+
+{% endblock %}

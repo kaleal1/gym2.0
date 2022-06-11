@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block titulo %} Agregar Nuevo Usuario {% endblock %}
+
+{% block contenido %}
+
+<div class="card">
+    <div class="card-header">
+        Crear usuario
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Datos del usuario</h4>
+
+       {% include 'User/form.html' %}
+
+    </div>
+    <div class="card-footer text-muted">
+        © Team Laika
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block titulo %} Lista de Usuarios {% endblock %}
+
+{% block contenido %}
+
+<div class="card">
+    <div class="card-header">
+        <a name="" id="" class="btn btn-success" href="{% url 'crearuser' %}" role="button">Agregar nuevo usuario</a>
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Usuario</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Height</th>
+                    <th>Weight</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for user in user %}
+                <tr>
+                    <td>{{user.UserId}}</td>
+                    <td>{{user.Username}}</td>
+                    <td>{{user.Usernombre}}</td>
+                    <td>{{user.UserHeight}}</td>
+                    <td>{{user.UserWeight}}</td>
+                    <td>
+                        <a name="" id="" class="btn btn-info" href="{% url 'editaruser'%}" role="button">Editar</a>
+                        <a name="" id="" class="btn btn-danger" href="#" role="button">Borrar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+
+    </div>
+    <div class="card-footer text-muted">
+        ©Team Laika
+    </div>
+</div>
+
+{% endblock %}
