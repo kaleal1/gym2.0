@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block titulo %} Editar Nuevo Ejercicio {% endblock %}
+
+{% block contenido %}
+
+<div class="card">
+    <div class="card-header">
+        Editar Rutina
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Datos del ejercicio</h4>
+
+       {% include 'excersice/form.html' %}
+
+    </div>
+    <div class="card-footer text-muted">
+        Footer
+    </div>
+</div>
+
+{% endblock %}

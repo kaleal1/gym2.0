@@ -2,9 +2,12 @@ from django.db import models
 
 
 # Create your models here.
+from django.forms import DateField
+
+
 class User(models.Model):
     UserId = models.AutoField(primary_key=True)
-    Username = models.CharField(max_length=50, verbose_name= 'Username')
+    Username = models.CharField(max_length=50, verbose_name='Username')
     Usernombre = models.CharField(max_length=50, verbose_name='Nombre')
     UserHeight = models.FloatField(verbose_name='Altura')
     UserWeight = models.FloatField(verbose_name='Peso')
@@ -28,3 +31,17 @@ class Excercise(models.Model):
     def delete(self, using=None, keep_parents=False):
         self.ExcerciseImage.storage.delete(self.ExcerciseImage.name)
         super().delete()
+
+class Routine (models.Model):
+    RoutineId = models.AutoField(primary_key=True)
+    Routinename = models.CharField(max_length=50, verbose_name='Nombre Rutina')
+    RoutineExcercise = models.ManyToManyField(Excercise)
+
+
+class History(models.Model):
+    HistoryId = models.AutoField(primary_key=True)
+    UserId = models.ForeignKey(User, on_delete=models.CASCADE)
+    RoutineId = models.ForeignKey(Routine, on_delete=models.CASCADE)
+    Usernombre = models.CharField(max_length=50, verbose_name='Nombre')
+    HistoryWeight = models.FloatField(verbose_name='Peso')
+    HistoryDate = models.DateField(auto_now_add=True, verbose_name='Fecha')

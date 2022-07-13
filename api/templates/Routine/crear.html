@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block titulo %} Agregar Nuevo Ejercicio {% endblock %}
+
+{% block contenido %}
+
+<div class="card">
+    <div class="card-header">
+        Crear Rutina
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Datos de rutina</h4>
+
+       {% include 'Routine/form.html' %}
+
+    </div>
+    <div class="card-footer text-muted">
+        © Team Laika
+    </div>
+</div>
+
+{% endblock %}
