@@ -1,8 +1,13 @@
+
 <form enctype="multipart/form-data" method="post">
+
     {% csrf_token %}
-    {% for campo in routineformulario %}
 <!--ACA AGREGAMOS LOS EJERCICIOS PARA LA RUTINA -->
-    {% endfor %}
+    <select name="color" id="color">
+      {% for excersice in excersice %}
+        <option>{{excersice.ExcerciseName}}</option>
+      {% endfor %}
+     </select>
     <input name="" id="" class="btn btn-success" type="submit" value="Enviar">
 </form>
 <form enctype="multipart/form-data" method="post">
