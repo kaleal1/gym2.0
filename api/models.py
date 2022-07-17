@@ -1,8 +1,7 @@
-from django.db import models
-
+from django.db import models, connections
 
 # Create your models here.
-from django.forms import DateField
+from django.forms import DateField, ModelForm
 
 
 class User(models.Model):
@@ -32,10 +31,25 @@ class Excercise(models.Model):
         self.ExcerciseImage.storage.delete(self.ExcerciseImage.name)
         super().delete()
 
-class Routine (models.Model):
+    class Meta:
+        db_table = 'api_excercise'
+
+
+class Routine(models.Model):
     RoutineId = models.AutoField(primary_key=True)
     Routinename = models.CharField(max_length=50, verbose_name='Nombre Rutina')
     RoutineExcercise = models.ManyToManyField(Excercise)
+
+    class Meta:
+        db_table = 'api_routine'
+
+# class RoutineExcercise(models.Model):
+#     Excercise = models.ForeignKey(Excercise, on_delete=models.CASCADE)
+#     Routine = models.ForeignKey(Routine, on_delete=models.CASCADE)
+#     Description = models.TextField()
+#
+#     class Meta:
+#         db_table = 'api_routineexcercise'
 
 
 class History(models.Model):

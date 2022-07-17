@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
-
+from django.contrib import admin
+# from django.conf.urls import url
 from django.conf import settings
 from django.contrib.staticfiles.urls import static
 
@@ -15,4 +16,6 @@ urlpatterns = [
                   path('routine', views.routine, name='routine'),
                   path('routine/crear', views.crearroutine, name='crearroutine'),
                   path('routine/editar', views.editarroutine, name='editarroutine'),
+                  path('admin/', admin.site.urls),
+                  path('showlist/', views.showlist, name='showlist'),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

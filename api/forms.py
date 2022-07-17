@@ -1,4 +1,6 @@
 from django import forms
+from django.forms import ModelForm
+
 from .models import User, Excercise, Routine
 
 
@@ -17,4 +19,11 @@ class ExcerciseForm(forms.ModelForm):
 class RoutineForm(forms.ModelForm):
     class Meta:
         model = Routine
-        fields = '__all__'
+        fields = ['Routinename', 'RoutineExcercise']
+
+        Routinename = forms.CharField()
+        RoutineExcercise= forms.ModelMultipleChoiceField(
+            queryset=Excercise.objects.all(),
+            widget=forms.CheckboxSelectMultiple
+        )
+
