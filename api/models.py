@@ -38,7 +38,7 @@ class Excercise(models.Model):
 
 
 class Routine(models.Model):
-    objects = None
+    #objects = None
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50, verbose_name='Nombre Rutina')
     excercise = models.ManyToManyField(Excercise)

@@ -13,12 +13,14 @@ urlpatterns = [
                   path('excercises', views.excercises, name='excercises'),
                   path('excercises/crear', views.crearexcercises, name='crearexcercises'),
                   path('excercises/editar', views.editarexcercises, name='editarexcercises'),
-                  path('excercises/eliminar', views.eliminarexcercises, name='eliminarexcercises'),
+                  path('excercises/eliminar/<int:id>', views.eliminarexcercises, name='eliminarexcercises'),
+                  path('routines/eliminar/<int:id>', views.eliminarexcercisesrout, name='eliminarexcercisesrout'),
                   path('routines', views.routines, name='routines'),
-                  path('routines/crear', views.crearroutines, name='crearroutines'),
+                  # path('routines/crear', views.crearroutines, name='crearroutines')
                   path('routines/editar', views.editarroutines, name='editarroutines'),
                   path('admin/', admin.site.urls),
                   path('showlist/', views.showlist, name='showlist'),
                   # path('excercise/eliminar/<int:id>', views.eliminar, name='eliminar'),
+                  path('excercises/agregar/<int:id>', views.agregarexcercise, name='agregarexcercise')
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

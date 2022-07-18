@@ -33,8 +33,9 @@
                     <td>{{excercise.description}}</td>
                     <td>{{excercise.muscle}}</td>
                     <td>
-                        <a name="" id="" class="btn btn-info" href="{% url 'editarexcercises'%}" role="button">Editar</a>
-                        <a name="" id="" class="btn btn-danger" href="{#}" role="button">Borrar</a>
+                        <a name="" id="" class="btn btn-info" href="{% url 'agregarexcercise' excercise.id %}" role="button">Agregar a rutina</a>
+                        <a name="" id="" class="btn btn-danger" href="{% url 'eliminarexcercises' excercise.id %}" role="button">Borrar</a>
+
 
                     </td>
                 </tr>

@@ -19,6 +19,8 @@ def users(request):
 
 def crearusers(request):
     userformulario = UserForm(request.POST or None)
+    if userformulario.is_valid():
+        userformulario.save()
     return render(request, 'User/crear.html', {'userformulario': userformulario})
 
 
@@ -45,23 +47,38 @@ def editarexcercises(request):
 
 
 def eliminarexcercises(request, id):
-    excercise = Excercise.objects.get(ExcerciseId=id)
+    excercise = Excercise.objects.get(id=id)
     excercise.delete()
-    #return redirect('excercise')
-    return render(request, 'excercise/eliminar.html')
+    return redirect('excercises')
 
 
 def routines(request):
-    routine = Routine.objects.all()
-    return render(request, 'routine/index.html', {'routine': routine})
+    rout = Routine.objects.get(id=1)
+    excercises = rout.excercise.all()
+    return render(request, 'routine/index.html', {'excercises': excercises})
+
+def eliminarexcercisesrout(request, id):
+    routine = Routine.objects.get(id=1)
+    excercises = routine.excercise.all()
+    exBorrar = excercises.get(id=id)
+    exBorrar.delete()                                    #listo todos los excercise de la rutina
+    return redirect('routines')
+
+def agregarexcercise(request,id):
+    excercise = Excercise.objects.get(id=id)
+    routine =Routine.objects.get(id=1)
+    routine.excercise.add(excercise)
+    return redirect('excercises')
 
 
-def crearroutines(request):
-    routineformulario = ExcerciseForm(request.POST or None, request.FILES or None)
-    if routineformulario.is_valid():
-        routineformulario.save()
-        return HttpResponse('Guardado')
-    return render(request, 'routine/crear.html', {'routineformulario': routineformulario})
+
+
+# def crearroutines(request):
+#     routineformulario = ExcerciseForm(request.POST or None, request.FILES or None)
+#     if routineformulario.is_valid():
+#         routineformulario.save()
+#         return HttpResponse('Guardado')
+#     return render(request, 'routine/crear.html', {'routineformulario': routineformulario})
 
 
 def editarroutines(request):

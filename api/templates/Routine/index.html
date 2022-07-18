@@ -6,7 +6,7 @@
 
 <div class="card">
     <div class="card-header">
-        <a name="" id="" class="btn btn-success" href="{% url 'crearroutines' %}" role="button">Agregar nueva rutina</a>
+
     </div>
     <div class="card-body">
         <h4 class="card-title">Rutina</h4>
@@ -15,31 +15,41 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>Imagen</th>
-                    <th>Descripcion</th>
-                    <th>Musculo</th>
-                    <th>Acciones</th>
+                    <th>
+
+                    </th>
+                   <th>Ejercicios</th>
+<!--                    <th>Musculo</th>-->
+<!--                    <th>Acciones</th>-->
+
+
                 </tr>
             </thead>
             <tbody>
-                {% for routine in routine %}
+
                 <tr>
-                    <td>{{routine.id}}</td>
-                    <td>{{routine.name}}</td>
+                   {% for excercise in excercises %}
+                <tr>
+                    <td>{{excercise.id}}</td>
+                    <td>{{excercise.name}}</td>
                     <td>
-                        <img src="{{routine.image.url}}", height="100"/>
+                        <img src="{{excercise.image.url}}", height="100"/>
 
                     </td>
-                    <td>{{routine.description}}</td>
-                    <td>{{routine.muscle}}</td>
+                    <td>{{excercise.description}}</td>
+                    <td>{{excercise.muscle}}</td>
                     <td>
-                        <a name="" id="" class="btn btn-info" href="{% url 'editarroutines'%}" role="button">Editar</a>
-                        <a name="" id="" class="btn btn-danger" href="#" role="button">Borrar</a>
+
+                        <a name="" id="" class="btn btn-danger" href="{% url 'eliminarexcercisesrout' excercise.id %}" role="button">Borrar</a>
                     </td>
                 </tr>
                 {% endfor %}
+
+
             </tbody>
         </table>
+
+
 
 
 
