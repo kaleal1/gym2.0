@@ -1,7 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.views.generic import CreateView
-
 from .models import User, Excercise, Routine
 from .forms import UserForm, ExcerciseForm, RoutineForm
 
@@ -13,44 +12,51 @@ def inicio(request):
 
 
 # vistas para usuario
-def user(request):
-    user = User.objects.all()
-    return render(request, 'User/index.html', {'user': user})
+def users(request):
+    users = User.objects.all()
+    return render(request, 'User/index.html', {'users': users})
 
 
-def crearuser(request):
+def crearusers(request):
     userformulario = UserForm(request.POST or None)
     return render(request, 'User/crear.html', {'userformulario': userformulario})
 
 
-def editaruser(request):
+def editarusers(request):
     return render(request, 'User/editar.html')
 
 
 # vistas para ejercicos
-def excersice(request):
-    excersice = Excercise.objects.all()
-    return render(request, 'excersice/index.html', {'excersice': excersice})
+def excercises(request):
+    excercises = Excercise.objects.all()
+    return render(request, 'excercise/index.html', {'excercises': excercises})
 
 
-def crearexcersice(request):
-    excersiceformulario = ExcerciseForm(request.POST or None, request.FILES or None)
-    if excersiceformulario.is_valid():
-        excersiceformulario.save()
+def crearexcercises(request):
+    excerciseformulario = ExcerciseForm(request.POST or None, request.FILES or None)
+    if excerciseformulario.is_valid():
+        excerciseformulario.save()
         return HttpResponse('Guardado')
-    return render(request, 'excersice/crear.html', {'excersiceformulario': excersiceformulario})
+    return render(request, 'excercise/crear.html', {'excerciseformulario': excerciseformulario})
 
 
-def editarexcersice(request):
-    return render(request, 'excersice/editar.html')
+def editarexcercises(request):
+    return render(request, 'excercise/editar.html')
 
 
-def routine(request):
+def eliminarexcercises(request, id):
+    excercise = Excercise.objects.get(ExcerciseId=id)
+    excercise.delete()
+    #return redirect('excercise')
+    return render(request, 'excercise/eliminar.html')
+
+
+def routines(request):
     routine = Routine.objects.all()
-    return render(request, 'routine/index.html', {'routine': excersice})
+    return render(request, 'routine/index.html', {'routine': routine})
 
 
-def crearroutine(request):
+def crearroutines(request):
     routineformulario = ExcerciseForm(request.POST or None, request.FILES or None)
     if routineformulario.is_valid():
         routineformulario.save()
@@ -58,17 +64,17 @@ def crearroutine(request):
     return render(request, 'routine/crear.html', {'routineformulario': routineformulario})
 
 
-def editarroutine(request):
+def editarroutines(request):
     return render(request, 'routine/editar.html')
-
-class AddMeal(CreateView):
-    model = Routine
-    form_class = RoutineForm
-    template_name = ‘meals/add_meal.html’
-    success_url = reverse_lazy(‘index’)
-
 
 
 def showlist(request):
     results = Excercise.objects.all
     return render(request, "Routine/form.html", {"Excercise": results})
+
+
+def addexcercise(request, id):
+    productobj = get_object_or_404(Excercise, id=id)
+    routinecart = Routine()
+    routinecart.excercise.add(productobj)
+    return render(request, 'Routine/index.html')

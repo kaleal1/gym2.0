@@ -1,6 +1,6 @@
 <form enctype="multipart/form-data" method="post">
     {% csrf_token %}
-    {% for campo in excersiceformulario %}
+    {% for campo in excerciseformulario %}
     <div class="mb-3">
         <label for="" class="form-label">{{ campo.label}}</label>
         <input type="{{ campo.field.widget.input_type }}"

@@ -6,7 +6,7 @@
 
 <div class="card">
     <div class="card-header">
-        <a name="" id="" class="btn btn-success" href="{% url 'crearexcersice' %}" role="button">Agregar nuevo ejercicio</a>
+        <a name="" id="" class="btn btn-success" href="{% url 'crearexcercises' %}" role="button">Agregar nuevo ejercicio</a>
     </div>
     <div class="card-body">
         <h4 class="card-title">Ejercicio</h4>
@@ -22,19 +22,20 @@
                 </tr>
             </thead>
             <tbody>
-                {% for excersice in excersice %}
+                {% for excercise in excercises %}
                 <tr>
-                    <td>{{excersice.ExcerciseId}}</td>
-                    <td>{{excersice.ExcerciseName}}</td>
+                    <td>{{excercise.id}}</td>
+                    <td>{{excercise.name}}</td>
                     <td>
-                        <img src="{{excersice.ExcerciseImage.url}}", height="100"/>
+                        <img src="{{excercise.image.url}}", height="100"/>
 
                     </td>
-                    <td>{{excersice.ExcerciseDescription}}</td>
-                    <td>{{excersice.ExcerciseMuscle}}</td>
+                    <td>{{excercise.description}}</td>
+                    <td>{{excercise.muscle}}</td>
                     <td>
-                        <a name="" id="" class="btn btn-info" href="{% url 'editarexcersice'%}" role="button">Editar</a>
-                        <a name="" id="" class="btn btn-danger" href="#" role="button">Borrar</a>
+                        <a name="" id="" class="btn btn-info" href="{% url 'editarexcercises'%}" role="button">Editar</a>
+                        <a name="" id="" class="btn btn-danger" href="{#}" role="button">Borrar</a>
+
                     </td>
                 </tr>
                 {% endfor %}
